@@ -1,10 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import { getAdvert } from '../src/components/API/adverts.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { addAdverts } from './redux/advertsSlice.js';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchAdverts = async () => {
+      try {
+        const response = await getAdvert(count);
+        const adverts = response.data;
+        console.log(adverts);
+
+        dispatch(addAdverts(adverts));
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchAdverts(count);
+  }, [dispatch, count]);
+
+  const adverts = useSelector((state) => state.adverts);
+  console.log('adverts:   ' + adverts);
+  console.log(adverts[3]);
 
   return (
     <>
@@ -29,7 +52,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
