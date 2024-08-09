@@ -1,56 +1,41 @@
-import { useState, useEffect } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import { getAdvert } from '../src/components/API/adverts.js';
-import { useSelector, useDispatch } from 'react-redux';
-import { addAdverts } from './redux/advertsSlice.js';
+import { useEffect } from 'react';
+import { fetchAdvertsPage } from '../src/redux/operations.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { incrementPage } from '../src/redux/advertsSlice.js';
+import {
+  selectAdverts,
+  selectPage,
+  selectIsLoading,
+  selectError,
+} from './redux/selectors.js';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(1);
   const dispatch = useDispatch();
+  const page = useSelector(selectPage);
+  const adverts = useSelector(selectAdverts);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
-    const fetchAdverts = async () => {
-      try {
-        const response = await getAdvert(count);
-        const adverts = response.data;
-        console.log(adverts);
+    console.log('Fetching adverts for page:', page);
+    dispatch(fetchAdvertsPage(page));
+  }, [dispatch, page]);
 
-        dispatch(addAdverts(adverts));
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchAdverts(count);
-  }, [dispatch, count]);
+  const handleIncrement = () => {
+    dispatch(incrementPage());
+  };
 
-  const adverts = useSelector((state) => state.adverts);
+  console.log(isLoading);
+  console.log(error);
   console.log('adverts:   ' + adverts);
-  console.log(adverts[3]);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <button onClick={handleIncrement}>count is {page}</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }

@@ -7,6 +7,6 @@ const instance = axios.create({
   },
 });
 
-export const getAdvert = (page) => {
+export const fetchAdverts = (page) => {
   return instance.get(`/?page=${page}`);
 };
