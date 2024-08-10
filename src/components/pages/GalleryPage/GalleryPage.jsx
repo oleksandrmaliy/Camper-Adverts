@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchAdvertsPage } from '../../../redux/operations.js';
-import { incrementPage } from '../../../redux/advertsSlice.js';
+// import { incrementPage } from '../../../redux/advertsSlice.js';
 import {
   selectAdverts,
   selectPage,
@@ -20,12 +20,13 @@ const GalleryPage = () => {
   useEffect(() => {
     if (page === 1) {
       dispatch(fetchAdvertsPage(page));
+      // dispatch(incrementPage(page + 1));
     }
-  }, [dispatch, page]);
+  }, []);
 
   const handleIncrement = () => {
-    dispatch(fetchAdvertsPage(page + 1));
-    dispatch(incrementPage(page + 1));
+    dispatch(fetchAdvertsPage(page));
+    // dispatch(incrementPage(page + 1));
   };
 
   console.log(adverts.length);
@@ -38,7 +39,7 @@ const GalleryPage = () => {
       <h2>{gallery}</h2>
       <h1>Camper adverts</h1>
       <div>
-        <button onClick={handleIncrement}>count is {page}</button>
+        <button onClick={handleIncrement}>count is {page - 1}</button>
       </div>
     </>
   );

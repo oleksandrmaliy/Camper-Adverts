@@ -10,11 +10,11 @@ const advertsSlice = createSlice({
     error: null,
     // loadedPages: new Set(),
   },
-  reducers: {
-    incrementPage(state, action) {
-      state.page = action.payload;
-    },
-  },
+  // reducers: {
+  //   incrementPage(state) {
+  //     state.page += 1;
+  //   },
+  // },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAdvertsPage.pending, (state) => {
@@ -25,6 +25,7 @@ const advertsSlice = createSlice({
         state.error = null;
         // const { adverts, page } = action.payload;
         state.adverts = [...state.adverts, ...action.payload];
+        state.page += 1;
         // state.loadedPages.add(page);
         // state.adverts = [...state.adverts, ...action.payload];
         // state.loadedPages.add(action.payload.page);
