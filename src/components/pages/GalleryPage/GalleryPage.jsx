@@ -9,7 +9,7 @@ import {
   selectError,
 } from '../../../redux/selectors.js';
 
-export const GalleryPage = () => {
+const GalleryPage = () => {
   const gallery = 'Its gallery page !';
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
@@ -18,16 +18,14 @@ export const GalleryPage = () => {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    console.log('Fetching adverts for page:', page);
-    console.log(adverts.length);
-    if (adverts.length === 0) {
+    if (page === 1) {
       dispatch(fetchAdvertsPage(page));
     }
-  }, []);
+  }, [dispatch, page]);
 
   const handleIncrement = () => {
-    dispatch(incrementPage());
-    dispatch(fetchAdvertsPage(page));
+    dispatch(fetchAdvertsPage(page + 1));
+    dispatch(incrementPage(page + 1));
   };
 
   console.log(adverts.length);
@@ -45,3 +43,5 @@ export const GalleryPage = () => {
     </>
   );
 };
+
+export default GalleryPage;

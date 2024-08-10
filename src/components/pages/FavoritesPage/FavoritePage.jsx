@@ -1,4 +1,4 @@
-export const FavoritePage = () => {
+const FavoritePage = () => {
   const favorite = 'Its favorite page !';
 
   return (
@@ -7,3 +7,5 @@ export const FavoritePage = () => {
     </>
   );
 };
+
+export default FavoritePage;

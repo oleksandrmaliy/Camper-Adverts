@@ -11,8 +11,8 @@ const advertsSlice = createSlice({
     // loadedPages: new Set(),
   },
   reducers: {
-    incrementPage(state) {
-      state.page += 1;
+    incrementPage(state, action) {
+      state.page = action.payload;
     },
   },
   extraReducers: (builder) => {

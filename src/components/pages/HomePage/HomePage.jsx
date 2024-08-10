@@ -1,4 +1,4 @@
-export const HomePage = () => {
+const HomePage = () => {
   const home = 'Its home page !';
 
   return (
@@ -73,3 +73,5 @@ export const HomePage = () => {
     </>
   );
 };
+
+export default HomePage;
