@@ -8,27 +8,24 @@ const advertsSlice = createSlice({
     page: 1,
     isLoading: false,
     error: null,
-    // loadedPages: new Set(),
+    noData: false,
   },
-  // reducers: {
-  //   incrementPage(state) {
-  //     state.page += 1;
-  //   },
-  // },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchAdvertsPage.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(fetchAdvertsPage.fulfilled, (state, action) => {
+        state.page += 1;
+        console.log('page :' + state.page);
+        if (action.payload.length < 4) {
+          state.noData = true;
+        }
+        console.log('PL.length :' + action.payload.length);
         state.isLoading = false;
         state.error = null;
-        // const { adverts, page } = action.payload;
         state.adverts = [...state.adverts, ...action.payload];
-        state.page += 1;
-        // state.loadedPages.add(page);
-        // state.adverts = [...state.adverts, ...action.payload];
-        // state.loadedPages.add(action.payload.page);
       })
       .addCase(fetchAdvertsPage.rejected, (state, action) => {
         state.isLoading = false;
@@ -38,4 +35,3 @@ const advertsSlice = createSlice({
 });
 
 export const advertsReducer = advertsSlice.reducer;
-export const { incrementPage } = advertsSlice.actions;

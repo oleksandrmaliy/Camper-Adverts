@@ -7,6 +7,7 @@ import {
   selectPage,
   selectIsLoading,
   selectError,
+  selectNoData,
 } from '../../../redux/selectors.js';
 
 const GalleryPage = () => {
@@ -16,6 +17,7 @@ const GalleryPage = () => {
   const adverts = useSelector(selectAdverts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+  const noData = useSelector(selectNoData);
 
   useEffect(() => {
     if (page === 1) {
@@ -29,17 +31,24 @@ const GalleryPage = () => {
     // dispatch(incrementPage(page + 1));
   };
 
-  console.log(adverts.length);
+  console.log(adverts);
+
   console.log('isLoading   :' + isLoading);
   console.log('error   :' + error);
-  console.log(adverts);
+  console.log(noData);
 
   return (
     <>
       <h2>{gallery}</h2>
       <h1>Camper adverts</h1>
       <div>
-        <button onClick={handleIncrement}>count is {page - 1}</button>
+        {noData ? (
+          <p>No more data to load !</p>
+        ) : (
+          <div>
+            <button onClick={handleIncrement}>Load more</button>
+          </div>
+        )}
       </div>
     </>
   );
