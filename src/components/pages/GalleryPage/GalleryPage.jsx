@@ -19,13 +19,18 @@ export const GalleryPage = () => {
 
   useEffect(() => {
     console.log('Fetching adverts for page:', page);
-    dispatch(fetchAdvertsPage(page));
-  }, [dispatch, page]);
+    console.log(adverts.length);
+    if (adverts.length === 0) {
+      dispatch(fetchAdvertsPage(page));
+    }
+  }, []);
 
   const handleIncrement = () => {
     dispatch(incrementPage());
+    dispatch(fetchAdvertsPage(page));
   };
 
+  console.log(adverts.length);
   console.log('isLoading   :' + isLoading);
   console.log('error   :' + error);
   console.log(adverts);
