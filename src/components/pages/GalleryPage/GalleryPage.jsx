@@ -1,16 +1,16 @@
-import { useEffect } from 'react';
-import { fetchAdvertsPage } from '../src/redux/operations.js';
 import { useDispatch, useSelector } from 'react-redux';
-import { incrementPage } from '../src/redux/advertsSlice.js';
+import { useEffect } from 'react';
+import { fetchAdvertsPage } from '../../../redux/operations.js';
+import { incrementPage } from '../../../redux/advertsSlice.js';
 import {
   selectAdverts,
   selectPage,
   selectIsLoading,
   selectError,
-} from './redux/selectors.js';
-import './App.css';
+} from '../../../redux/selectors.js';
 
-function App() {
+export const GalleryPage = () => {
+  const gallery = 'Its gallery page !';
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
   const adverts = useSelector(selectAdverts);
@@ -26,18 +26,17 @@ function App() {
     dispatch(incrementPage());
   };
 
-  console.log(isLoading);
-  console.log(error);
-  console.log('adverts:   ' + adverts);
+  console.log('isLoading   :' + isLoading);
+  console.log('error   :' + error);
+  console.log(adverts);
 
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
+      <h2>{gallery}</h2>
+      <h1>Camper adverts</h1>
+      <div>
         <button onClick={handleIncrement}>count is {page}</button>
       </div>
     </>
   );
-}
-
-export default App;
+};
