@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchAdvertsPage } from '../../../redux/operations.js';
-// import { incrementPage } from '../../../redux/advertsSlice.js';
+import { fetchAdvertsPage } from '../../redux/operations.js';
 import {
   selectAdverts,
   selectPage,
   selectIsLoading,
   selectError,
   selectNoData,
-} from '../../../redux/selectors.js';
+} from '../../redux/selectors.js';
 
 const GalleryPage = () => {
   const gallery = 'Its gallery page !';
@@ -22,17 +21,14 @@ const GalleryPage = () => {
   useEffect(() => {
     if (page === 1) {
       dispatch(fetchAdvertsPage(page));
-      // dispatch(incrementPage(page + 1));
     }
   }, []);
 
   const handleIncrement = () => {
     dispatch(fetchAdvertsPage(page));
-    // dispatch(incrementPage(page + 1));
   };
 
   console.log(adverts);
-
   console.log('isLoading   :' + isLoading);
   console.log('error   :' + error);
   console.log(noData);

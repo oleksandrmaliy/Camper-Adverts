@@ -1,3 +1,21 @@
+.navLink {
+  display: inline-block;
+  width: 173px;
+  height: 56px;
+  padding: 10px;
+  margin-right: 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 56px;
+  color: aqua;
+  background-color: brown;
+}
+
+.activeLink {
+  color: red;
+  font-weight: bold;
+}
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;

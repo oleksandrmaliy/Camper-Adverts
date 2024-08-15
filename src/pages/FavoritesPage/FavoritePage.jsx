@@ -1,9 +1,13 @@
+import css from './FavoritePage.module.css';
+
 const FavoritePage = () => {
   const favorite = 'Its favorite page !';
 
   return (
     <>
-      <h2>{favorite}</h2>
+      <div className={css.favorite}>
+        <h2>{favorite}</h2>
+      </div>
     </>
   );
 };

@@ -1,0 +1,44 @@
+.wrapper {
+  display: block;
+  /* width: 1440px; */
+}
+
+.photoWrapper1 {
+  width: 100%;
+  padding: 24px;
+  margin-bottom: 24px;
+  border-radius: 20px;
+  border: 1px solid var(--black-02);
+}
+
+.photoWrapper2 {
+  width: calc((100%-24px) / 2);
+  padding: 24px;
+  margin-bottom: 24px;
+  border-radius: 20px;
+  border: 1px solid var(--black-02);
+}
+
+.photoWrapperDouble {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.photo {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.textWrapper {
+  width: 100%;
+  padding: 24px;
+  margin-bottom: 24px;
+  border-radius: 20px;
+  border: 1px solid var(--black-02);
+}
+
+.list {
+  list-style: none;
+}
